@@ -1,0 +1,10 @@
+{
+  "name": "cycle-time",
+  "version": "1.0.0",
+  "description": "You can measure pull request cycle time",
+  "main": "index.js",
+  "repository": "git@github.com:shun0918/cycletime.git",
+  "author": "shun0918",
+  "license": "MIT",
+  "private": true
+}
