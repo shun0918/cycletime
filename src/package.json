@@ -6,5 +6,8 @@
   "repository": "git@github.com:shun0918/cycletime.git",
   "author": "shun0918",
   "license": "MIT",
-  "private": true
+  "private": true,
+  "scripts": {
+    "start": "node index.js"
+  }
 }
