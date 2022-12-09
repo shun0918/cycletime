@@ -7,7 +7,11 @@
   "author": "shun0918",
   "license": "MIT",
   "private": true,
+  "type": "module",
   "scripts": {
     "start": "node index.js"
+  },
+  "dependencies": {
+    "octokit": "^2.0.10"
   }
 }
