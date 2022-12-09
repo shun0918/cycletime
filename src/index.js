@@ -8,16 +8,13 @@ const octokit = new Octokit({
 
 const [owner, repo] = process.env.GITHUB_TARGET_REPOSITORY.split('/');
 
-const { data } = await octokit.request("GET /repos/{owner}/{repo}/issues", {
+const res = await octokit.request('GET /repos/{owner}/{repo}/pulls', {
   owner,
   repo,
-});
-
-const res = await octokit.request("POST /repos/{owner}/{repo}/issues/{issue_number}/comments", {
-  owner,
-  repo,
-  issue_number: data[0].number,
-  body: `commented at ${new Date().toString()} from Octokit`
+  state: 'open',
+  sort: 'created',
+  direction: 'desc',
+  per_page: 1
 });
 
 console.log(res);
