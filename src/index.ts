@@ -1,4 +1,5 @@
 import { Octokit } from "octokit";
+import { cycleTime } from "./cycletime";
 
 const [owner, repo] = process.env.GITHUB_TARGET_REPOSITORY!.split('/');
 
@@ -37,6 +38,7 @@ const main = () => {
   pulls().then((pullsResponse) => {
     pullsResponse.data.forEach((pull) => {
       commits(pull.number).then((response) => {
+        const cycleTime = cycleTime(response.data);
         console.log(messageHeader(pull.title));
         response.data.forEach((commit) => {
           const commitMessage = commit.commit.message;
