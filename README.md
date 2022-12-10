@@ -15,3 +15,9 @@ reference: Creating a personal access token - GitHub Docs https://docs.github.co
 GITHUB_TARGET_REPOSITORY={owner}/{target-repository}
 GITHUB_ACCESS_TOKEN=xxxxxxxxxxxx
 ```
+
+
+## Run in Docker Compose
+```
+docker-compose up
+```
