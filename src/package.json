@@ -9,7 +9,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "node --trace-warnings --loader ts-node/esm index.ts"
+    "start": "ts-node index.ts"
   },
   "dependencies": {
     "octokit": "^2.0.10"
