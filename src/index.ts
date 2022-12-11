@@ -1,5 +1,7 @@
 import { Octokit } from "octokit";
 import { cycleTime } from "./cycletime.js";
+import { toTable } from "./presentation.js";
+import { PullCycleTime } from "./type.js";
 
 const [owner, repo] = process.env.GITHUB_TARGET_REPOSITORY!.split('/');
 
@@ -22,33 +24,21 @@ const commits = (pullNumber: number) => octokit.request('GET /repos/{owner}/{rep
   pull_number: pullNumber
 });
 
-const messageHeader = (pullName: string, cycleTime: string) =>
-`========================
-PR: ${pullName}: ${cycleTime}
-------------------------
-| commit message | date |`
-
-const messageBody = (message: string, date: string) =>
-`------------------------
-| ${message} | ${date} |`
-
-const messageFooter = () => '========================\n'
-
-const main = () => {
-  pulls().then((pullsResponse) => {
-    pullsResponse.data.forEach((pull) => {
-      commits(pull.number).then((response) => {
-        const _cycleTime = cycleTime(response.data);
-        console.log(messageHeader(pull.title, _cycleTime));
-        response.data.forEach((commit) => {
-          const commitMessage = commit.commit.message;
-          const commitDate = commit.commit.author?.date || 'unknown';
-          console.log(messageBody(commitMessage, commitDate));
-        });
-        console.log(messageFooter());
-      });
-    });
-  });
+const main = async () => {
+  const pullsResponse = await pulls();
+  const res: PullCycleTime[] = await Promise.all(pullsResponse.data.map(async (pull) => {
+    const { data } = await commits(pull.number);
+    return {
+      title: pull.title,
+      url: pull.html_url,
+      cycleTime: cycleTime(data),
+      commits: data.map((commit) => ({
+        message: commit.commit.message,
+        date: commit.commit.author?.date || 'unknown',
+      })),
+    };
+  }));
+  toTable(res);
 }
 
 
