@@ -11,7 +11,7 @@ const messageBody = (message: string, date: string) =>
 
 const messageFooter = () => '========================\n'
 
-export const toTable = (pulls: PullCycleTime[]) => {
+export const showTable = (pulls: PullCycleTime[]) => {
   pulls.forEach((pull) => {
     console.log(messageHeader(pull.title, pull.cycleTime));
     pull.commits.forEach((commit) => {

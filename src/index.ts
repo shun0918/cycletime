@@ -1,6 +1,6 @@
 import { Octokit } from "octokit";
 import { cycleTime } from "./cycletime.js";
-import { toTable } from "./presentation.js";
+import { showTable } from "./presentation.js";
 import { PullCycleTime } from "./type.js";
 
 const [owner, repo] = process.env.GITHUB_TARGET_REPOSITORY!.split('/');
@@ -38,7 +38,7 @@ const main = async () => {
       })),
     };
   }));
-  toTable(res);
+  showTable(res);
 }
 
 
