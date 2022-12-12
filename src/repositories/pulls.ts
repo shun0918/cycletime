@@ -1,12 +1,18 @@
 import { client, owner, repo } from '../lib/oktkit/index.js';
 
-const pulls = () => client.request('GET /repos/{owner}/{repo}/pulls', {
+type RequestBody = {
+  perPage?: number;
+  page?: number;
+};
+
+const pulls = ({ perPage, page }: RequestBody) => client.request('GET /repos/{owner}/{repo}/pulls', {
   owner,
   repo,
-  state: 'closed',
+  state: 'all',
   sort: 'created',
   direction: 'desc',
-  per_page: 1
+  per_page: perPage || 10,
+  page: page || 1,
 });
 
 export { pulls };

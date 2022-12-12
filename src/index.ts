@@ -1,9 +1,9 @@
 import { showTable } from './presentation.js';
 import { pullCycleTimes } from './domain/cycle-time/services/pull-cycle-times.js';
 
-const main = async () => {
-  const res = await pullCycleTimes();
+const main = async (perPage: number, page: number) => {
+  const res = await pullCycleTimes(perPage, page);
   showTable(res);
 }
 
-main();
+main(parseInt(process.argv[2]) || 10, parseInt(process.argv[3]) || 1);

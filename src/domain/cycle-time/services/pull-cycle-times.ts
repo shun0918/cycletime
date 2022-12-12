@@ -3,8 +3,8 @@ import { PullCycleTime } from "../type.js";
 import { pulls } from "../../../repositories/pulls.js";
 import { commits } from "../../../repositories/commits.js";
 
-const pullCycleTimes = async (): Promise<PullCycleTime[]> => {
-  const pullsResponse = await pulls();
+const pullCycleTimes = async (perPage: number, page: number): Promise<PullCycleTime[]> => {
+  const pullsResponse = await pulls({ perPage, page});
   return await Promise.all(pullsResponse.data.map(async (pull) => {
     const { data } = await commits(pull.number);
     return {
