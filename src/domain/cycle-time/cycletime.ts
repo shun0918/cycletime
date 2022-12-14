@@ -13,11 +13,12 @@ const _toText = (hour: number) => {
   return `${Math.floor(hour / 24)} d ${h} h`;
 }
 
-export const cycleTime = (commits: Commit[]) => {
+export const cycleTime = (commits: Commit[], mergedAt: string | null) => {
   const firstCommit = commits[0];
-  const lastCommit = commits[commits.length - 1];
+  if (!firstCommit.commit.author?.date || !mergedAt) return 'unknown';
+
   const firstCommitDate = new Date(firstCommit.commit.author?.date || '2021-01-01');
-  const lastCommitDate = new Date(lastCommit.commit.author?.date || '2021-01-01');
+  const lastCommitDate = new Date(mergedAt || '2021-01-01');
   const diff = lastCommitDate.getTime() - firstCommitDate.getTime();
   const diffHour = Math.ceil(diff / (1000 * 60 * 60));
   return _toText(diffHour);
