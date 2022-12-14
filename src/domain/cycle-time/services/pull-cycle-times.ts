@@ -6,8 +6,6 @@ import { commits } from "../../../repositories/commits.js";
 const pullCycleTimes = async (perPage: number, page: number): Promise<PullCycleTime[]> => {
   const pullsResponse = await pulls({ perPage, page});
 
-  console.log(pullsResponse)
-
   return await Promise.all(pullsResponse.data.map(async (pull) => {
     const { data } = await commits(pull.number);
     return {
