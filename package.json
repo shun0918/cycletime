@@ -9,7 +9,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "ts-node src/index.ts"
+    "start": "ts-node index.ts"
   },
   "dependencies": {
     "octokit": "^2.0.10"
