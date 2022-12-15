@@ -6,8 +6,8 @@ services:
       context: .
       dockerfile: ./docker/app/Dockerfile
     volumes:
-      - ./src:/src
-      - node_modules:/src/node_modules
+      - .:/src
+      - node_modules:/node_modules
     env_file: ./.env
     command: sh -c "yarn && yarn start"
     tty: true
