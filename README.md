@@ -8,7 +8,7 @@ cd /path/to/cycletime
 cp .env.sample .env
 ```
 
-You need　a personal access token.
+You need a personal access token.
 reference: Creating a personal access token - GitHub Docs https://docs.github.com/ja/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
 
 Edit `.env`.
