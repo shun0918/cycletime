@@ -1,4 +1,4 @@
-import { PullCycleTime } from './domain/cycle-time/type.js'
+import { PullCycleTime } from './type.js'
 
 const messageHeader = (pullName: string, cycleTime: string) =>
 `========================

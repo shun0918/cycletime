@@ -1,7 +1,7 @@
-import { cycleTime } from "../cycletime.js";
+import { cycleTime } from "../cycle-time/cycletime.js";
 import { PullCycleTime } from "../type.js";
-import { findPull } from "../../../repositories/find-pull.js";
-import { commits } from "../../../repositories/commits.js";
+import { findPull } from "../repositories/find-pull.js";
+import { commits } from "../repositories/commits.js";
 
 const findCycleTime = async (pullNumber: number): Promise<PullCycleTime> => {
   const pull = await findPull(pullNumber);
