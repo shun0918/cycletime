@@ -1,7 +1,7 @@
-import { cycleTime } from "../cycletime.js";
+import { cycleTime } from "../cycle-time/cycletime.js";
 import { PullCycleTime } from "../type.js";
-import { pulls } from "../../../repositories/pulls.js";
-import { commits } from "../../../repositories/commits.js";
+import { pulls } from "../repositories/pulls.js";
+import { commits } from "../repositories/commits.js";
 
 const pullCycleTimes = async (perPage: number, page: number): Promise<PullCycleTime[]> => {
   const pullsResponse = await pulls({ perPage, page});
