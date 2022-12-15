@@ -11,8 +11,9 @@ const messageBody = (message: string, date: string) =>
 
 const messageFooter = () => '========================\n'
 
-export const showTable = (pulls: PullCycleTime[]) => {
-  pulls.forEach((pull) => {
+export const showTable = (pulls: PullCycleTime[] | PullCycleTime) => {
+  const _pulls = Array.isArray(pulls) ? pulls : [pulls];
+  _pulls.forEach((pull) => {
     console.log(messageHeader(pull.title, pull.cycleTime));
     pull.commits.forEach((commit) => {
       console.log(messageBody(commit.message, commit.date));
