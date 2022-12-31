@@ -2,6 +2,9 @@
   "name": "cycle-time",
   "version": "1.0.0",
   "description": "You can measure pull request cycle time",
+  "bin": {
+    "cycletime": "dist/bin/index.js"
+  },
   "main": "dist/index.js",
   "repository": "git@github.com:shun0918/cycletime.git",
   "author": "shun0918",
